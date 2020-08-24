@@ -3,7 +3,6 @@
 
 
 def añadirAñoAlDiccionario(diccionario, año):
-
 	if(año in diccionario.keys()):
 		print("El año", año, "ya esta en el diccionario y no se puede volver a añadir.\n")
 	else:
@@ -11,7 +10,6 @@ def añadirAñoAlDiccionario(diccionario, año):
 
 
 def añadirKilometroAlAño(diccionario, año, listaKilometros):
-
 	if(año not in diccionario.keys()):
 		print("El año", año, "no esta en el diccionario.")
 	else:
@@ -25,19 +23,16 @@ def añadirKilometroAlAño(diccionario, año, listaKilometros):
 
 
 def sumaDeKilometrosPorAño(diccionario, año):
-
 	suma = sum(diccionario[año])
 	return suma
 
 
 def numeroDeViajesPorAño(diccionario, año):
-
 	viajes = len(diccionario[año])
 	return viajes
 
 
 def obtenerViajeMasLargoDeUnAño(diccionario, año):
-
 	distancia = max(diccionario[año])
 	return distancia
 
@@ -46,14 +41,12 @@ def obtenerViajeMasLargoDeUnAño(diccionario, año):
 
 
 def imprimirDiccionario(diccionario):
-
 	for c in diccionario:
 		print(c,":", diccionario[c])
 	print()
 
 
 def imprimirSumaDeKilometrosDeCadaAño(diccionario):
-
 	for c in diccionario.keys():
 		suma = sumaDeKilometrosPorAño(diccionario, c)
 		print("En el año", c, "el número total de kilómetros hechos es de", suma)
@@ -61,7 +54,6 @@ def imprimirSumaDeKilometrosDeCadaAño(diccionario):
 
 
 def imprimirMediaDeKilometrosPorViaje(diccionario):
-
 	for c in diccionario.keys():
 		suma = sumaDeKilometrosPorAño(diccionario, c)
 		viajes = numeroDeViajesPorAño(diccionario, c)
@@ -87,7 +79,6 @@ def imprimirViajesMasLargosPorCadaAño(diccionario):
 
 
 def imprimirKilometrosPorCadaDiaDelAño(diccionario):
-
 	for c in diccionario.keys():
 		kms = sumaDeKilometrosPorAño(diccionario, c)/365
 		print("En el año", c, "el número de kilómetros hechos cada día del año es de", kms)
@@ -95,7 +86,6 @@ def imprimirKilometrosPorCadaDiaDelAño(diccionario):
 
 
 def imprimirViajeMasLargoDeTodos(diccionario):
-
 	maximo = 0
 	año = 0
 	for c in diccionario.keys():
@@ -107,14 +97,22 @@ def imprimirViajeMasLargoDeTodos(diccionario):
 
 
 def imprimirKmsTotales(diccionario):
-
 	acum = 0
 	for c in diccionario.keys():
 		acum = acum + sumaDeKilometrosPorAño(diccionario, c)
 	print("Número total de kilometros realizados en coche:", acum, '\n')
 
-kilometros = {}
 
+def kms_totales_sportage(kms_totales_coche, kms_sportage):
+	kmsYoSportage = sum(kms_sportage)	
+	tantoPorciento = (kmsYoSportage*100)/kms_totales_coche
+	tantoPorcientoString = "%.2f" % tantoPorciento
+	print("El Kia Sportage tiene un total de", kms_totales_coche, "kilometros. De los cuales yo he hecho",
+	kmsYoSportage, "kilometros. Es decir, el", tantoPorcientoString, "%\n")
+
+
+
+kilometros = {}
 
 #Adición de años y kilometros hechos en los respectivos años
 
@@ -130,7 +128,8 @@ kms2019 = [7, 6, 7, 12, 12, 15, 10, 8, 20, 555, 21, 46, 11, 522, 12, 10, 13, 7, 
 	73, 18, 20, 2, 31, 8, 4, 476, 18, 13, 33, 12, 18, 9, 9, 13, 11, 44, 16, 52, 19, 15, 13, 8, 33, 11, 21, 46, 19,
 	17, 11, 227, 16, 18, 11, 11, 11, 33, 16, 4, 5, 9, 22]
 
-kms2020 = [3, 4, 16, 14]
+kms2020 = [3, 4, 16, 14, 13, 13, 9, 12, 19, 11, 10, 8, 24, 38, 45, 10, 71, 7, 10, 18, 6, 8, 6, 7, 7, 16, 12, 7, 6, 
+	8, 13, 13, 10, 10, 35, 6, 8, 7, 7, 53, 15, 384, 395, 19, 7, 12, 34, 508, 24, 2]
 
 
 #Kilómetros en cada coche
@@ -143,7 +142,9 @@ kms_sportage=[3, 9, 14, 18, 16, 13, 12, 20, 15, 8, 9, 18, 7, 12, 28, 8, 9, 23, 4
 	76, 11, 16, 11, 11, 17, 228, 11, 39, 533, 92, 478, 18, 7, 6, 7, 12, 12, 15, 10, 8, 20, 555, 21, 46, 11, 522, 12, 
 	10, 13, 7, 16, 13, 16, 6, 18, 17, 11, 12, 8, 9, 248, 256, 7, 7, 64, 10, 23, 12, 16, 36, 26, 15, 39, 7, 474, 38, 7, 
 	6, 17, 6, 37, 6, 29, 36, 7, 107, 108, 30, 73, 18, 20, 2, 31, 8, 4, 476, 18, 13, 33, 12, 18, 9, 9, 13, 11, 44, 16, 52, 
-	19, 15, 13, 8, 33, 11, 21, 46, 19, 17, 11, 227, 16, 18, 11, 11, 11, 33, 16, 4, 5, 9, 22, 3, 4, 16, 14]
+	19, 15, 13, 8, 33, 11, 21, 46, 19, 17, 11, 227, 16, 18, 11, 11, 11, 33, 16, 4, 5, 9, 22, 3, 4, 16, 14, 13, 13, 9, 12,
+	19, 11, 10, 8, 24, 38, 45, 10, 71, 7, 10, 18, 6, 8, 6, 7, 7, 16, 12, 7, 6, 8, 13, 13, 10, 10, 35, 6, 8, 7, 7, 53, 15, 
+	384, 395, 19, 7, 12, 34, 508, 24, 2]
 
 #Adición de datos al diccionario
 
@@ -181,20 +182,10 @@ imprimirViajeMasLargoDeTodos(kilometros)
 
 imprimirKmsTotales(kilometros)
 
-
 print("Kilometros recorridos con el Renault Scenic Clase 3 Dynamic:", sum(kms_scenic), "\n")
 
-print("Kilometros recorridos con el Kia Sportage:", sum(kms_sportage), "\n")
-
-
-def kms_totales_sportage(kms_totales_coche):
-
-	kmsYoSportage = sum(kms_sportage)	
-	tantoPorciento = (kmsYoSportage*100)/kms_totales_coche
-	tantoPorcientoString = "%.2f" % tantoPorciento
-	print("El Kia Sportage tiene un total de", kms_totales_coche, "kilometros. De los cuales yo he hecho",
-	kmsYoSportage, "kilometros. Es decir, el", tantoPorcientoString, "%\n")
+print("Kilometros recorridos con el Kia Sportage 2018:", sum(kms_sportage), "\n")
 
 # Cambiar los km totales del coche cada vez que se ejecute el archivo
 
-kms_totales_sportage(13107)
+kms_totales_sportage(17191, kms_sportage)
