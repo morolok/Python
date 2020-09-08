@@ -111,6 +111,14 @@ def kms_totales_sportage(kms_totales_coche, kms_sportage):
 	kmsYoSportage, "kilometros. Es decir, el", tantoPorcientoString, "%\n")
 
 
+def kms_totales_scenic(kms_totales_coche, kms_scenic):
+	kmsYoScenic = sum(kms_scenic)	
+	tantoPorciento = (kmsYoScenic*100)/kms_totales_coche
+	tantoPorcientoString = "%.2f" % tantoPorciento
+	print("El Renualt Scenic tiene un total de", kms_totales_coche, "kilometros. De los cuales yo he hecho",
+	kmsYoScenic, "kilometros. Es decir, el", tantoPorcientoString, "%\n")
+
+
 
 kilometros = {}
 
@@ -129,7 +137,7 @@ kms2019 = [7, 6, 7, 12, 12, 15, 10, 8, 20, 555, 21, 46, 11, 522, 12, 10, 13, 7, 
 	17, 11, 227, 16, 18, 11, 11, 11, 33, 16, 4, 5, 9, 22]
 
 kms2020 = [3, 4, 16, 14, 13, 13, 9, 12, 19, 11, 10, 8, 24, 38, 45, 10, 71, 7, 10, 18, 6, 8, 6, 7, 7, 16, 12, 7, 6, 
-	8, 13, 13, 10, 10, 35, 6, 8, 7, 7, 53, 15, 384, 395, 19, 7, 12, 34, 508, 24, 2]
+	8, 13, 13, 10, 10, 35, 6, 8, 7, 7, 53, 15, 384, 395, 19, 7, 12, 34, 508, 24, 2, 7, 27, 4, 5, 17, 477, 33]
 
 
 #Kilómetros en cada coche
@@ -144,7 +152,7 @@ kms_sportage=[3, 9, 14, 18, 16, 13, 12, 20, 15, 8, 9, 18, 7, 12, 28, 8, 9, 23, 4
 	6, 17, 6, 37, 6, 29, 36, 7, 107, 108, 30, 73, 18, 20, 2, 31, 8, 4, 476, 18, 13, 33, 12, 18, 9, 9, 13, 11, 44, 16, 52, 
 	19, 15, 13, 8, 33, 11, 21, 46, 19, 17, 11, 227, 16, 18, 11, 11, 11, 33, 16, 4, 5, 9, 22, 3, 4, 16, 14, 13, 13, 9, 12,
 	19, 11, 10, 8, 24, 38, 45, 10, 71, 7, 10, 18, 6, 8, 6, 7, 7, 16, 12, 7, 6, 8, 13, 13, 10, 10, 35, 6, 8, 7, 7, 53, 15, 
-	384, 395, 19, 7, 12, 34, 508, 24, 2]
+	384, 395, 19, 7, 12, 34, 508, 24, 2, 7, 27, 4, 5, 17, 477, 33]
 
 #Adición de datos al diccionario
 
@@ -188,4 +196,6 @@ print("Kilometros recorridos con el Kia Sportage 2018:", sum(kms_sportage), "\n"
 
 # Cambiar los km totales del coche cada vez que se ejecute el archivo
 
-kms_totales_sportage(17191, kms_sportage)
+kms_totales_sportage(17817, kms_sportage)
+
+kms_totales_scenic(58519, kms_scenic)
