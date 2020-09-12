@@ -4,6 +4,7 @@ import hashlib
 import base64
 import calendar
 import random
+import math
 
 
 def mensajeWhatsApp():
@@ -36,7 +37,16 @@ def enteroAleatorio(minim, maxim):
 	print(random.randint(minim, maxim))
 
 
+def suelo(num):
+	print(math.floor(num))
+
+
+def techo(num):
+	print(math.ceil(num))
+
+
 #mensajeWhatsApp()
 #contraseña()
 #calendario(2020)
 #enteroAleatorio(0, 1)
+suelo(-2/3)
