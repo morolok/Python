@@ -45,8 +45,18 @@ def techo(num):
 	print(math.ceil(num))
 
 
+def pruebasNone():
+	usuario = "carmatbla"
+	if(usuario):
+		print("Hay un usuario")
+	usuario = None
+	if(not usuario):
+		print("No hay usuario")
+
+
 #mensajeWhatsApp()
 #contraseña()
 #calendario(2020)
 #enteroAleatorio(0, 1)
-suelo(-2/3)
+#suelo(-2/3)
+#pruebasNone()
