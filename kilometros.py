@@ -138,7 +138,10 @@ kms2019 = [7, 6, 7, 12, 12, 15, 10, 8, 20, 555, 21, 46, 11, 522, 12, 10, 13, 7, 
 
 kms2020 = [3, 4, 16, 14, 13, 13, 9, 12, 19, 11, 10, 8, 24, 38, 45, 10, 71, 7, 10, 18, 6, 8, 6, 7, 7, 16, 12, 7, 6, 
 	8, 13, 13, 10, 10, 35, 6, 8, 7, 7, 53, 15, 384, 395, 19, 7, 12, 34, 508, 24, 2, 7, 27, 4, 5, 17, 477, 33, 14, 
-	7, 7, 11, 31, 6, 8, 6, 16, 8, 6, 7, 7, 10, 8, 32, 6, 6, 7, 12, 15]
+	7, 7, 11, 31, 6, 8, 6, 16, 8, 6, 7, 7, 10, 8, 32, 6, 6, 7, 12, 15, 7, 7, 10, 7, 8, 8, 15, 8, 24, 13, 13]
+
+kms2021 = [8, 13, 5, 17, 7, 7, 6, 11, 10, 5, 7, 7, 11, 7, 7, 8, 15, 23, 15, 10, 13, 7, 15, 8, 13, 26, 6, 7, 8, 10, 7, 
+	18, 7, 8, 7, 8, 7, 14, 15, 7, 30, 475, 186, 479, 475, 11, 97, 97, 8, 16, 16, 208, 481, 13, 21, 7, 28]
 
 
 #Kilómetros en cada coche
@@ -154,7 +157,9 @@ kms_sportage=[3, 9, 14, 18, 16, 13, 12, 20, 15, 8, 9, 18, 7, 12, 28, 8, 9, 23, 4
 	19, 15, 13, 8, 33, 11, 21, 46, 19, 17, 11, 227, 16, 18, 11, 11, 11, 33, 16, 4, 5, 9, 22, 3, 4, 16, 14, 13, 13, 9, 12,
 	19, 11, 10, 8, 24, 38, 45, 10, 71, 7, 10, 18, 6, 8, 6, 7, 7, 16, 12, 7, 6, 8, 13, 13, 10, 10, 35, 6, 8, 7, 7, 53, 15, 
 	384, 395, 19, 7, 12, 34, 508, 24, 2, 7, 27, 4, 5, 17, 477, 33, 14, 7, 7, 11, 31, 6, 8, 6, 16, 8, 6, 7, 7, 10, 8, 32, 
-	6, 6, 7, 12, 15]
+	6, 6, 7, 12, 15, 7, 7, 10, 7, 8, 8, 15, 8, 24, 13, 13, 8, 13, 5, 17, 7, 7, 6, 11, 10, 5, 7, 7, 11, 7, 7, 8, 15, 23, 
+	15, 10, 13, 7, 15, 8, 13, 26, 6, 7, 8, 10, 7, 18, 7, 8, 7, 8, 7, 14, 15, 7, 30, 475, 186, 479, 475, 11, 97, 97, 8, 
+	16, 16, 208, 481, 13, 21, 7, 28]
 
 #Adición de datos al diccionario
 
@@ -166,6 +171,8 @@ añadirAñoAlDiccionario(kilometros, 2019)
 
 añadirAñoAlDiccionario(kilometros, 2020)
 
+añadirAñoAlDiccionario(kilometros, 2021)
+
 añadirKilometroAlAño(kilometros, 2017, kms2017)
 
 añadirKilometroAlAño(kilometros, 2018, kms2018)
@@ -173,6 +180,8 @@ añadirKilometroAlAño(kilometros, 2018, kms2018)
 añadirKilometroAlAño(kilometros, 2019, kms2019)
 
 añadirKilometroAlAño(kilometros, 2020, kms2020)
+
+añadirKilometroAlAño(kilometros, 2021, kms2021)
 
 #Visualización del diccionario con los métodos
 
@@ -198,6 +207,6 @@ print("Kilometros recorridos con el Kia Sportage 2018:", sum(kms_sportage), "\n"
 
 # Cambiar los km totales del coche cada vez que se ejecute el archivo
 
-kms_totales_sportage(18132, kms_sportage)
+kms_totales_sportage(26802, kms_sportage)
 
 kms_totales_scenic(58519, kms_scenic)
