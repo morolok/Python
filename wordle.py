@@ -11,25 +11,20 @@ def extraer_palabras():
     f.close()
 
 def condiciones_palabras():
+    # Filtrar las palabras que tengan o no letras y nos las quedamos
     for pal in palabras:
-        if('n' not in pal and ('o' not in pal or 'ó' not in pal) and 'v' not in pal and ('i' not in pal or 'í' not in pal)):
+        if(('o' in pal or 'ó' in pal) and ('a' in pal or 'á' in pal) and ('v' in pal) and 
+        ('n' not in pal) and ('i' not in pal) and ('í' not in pal)):
             posibles_palabras.append(pal)
-        elif('n' not in pal or ('o' not in pal or 'ó' not in pal) or 'v' not in pal or ('i' not in pal or 'í' not in pal)):
-            posibles_palabras.append(pal)
-            print(pal)
-        elif('n' not in pal):
-            posibles_palabras.append(pal)
-        elif('o' not in pal or 'ó' not in pal):
-            posibles_palabras.append(pal)
-        elif('v' not in pal):
-            posibles_palabras.append(pal)
-        elif('i' not in pal or 'í' not in pal):
-            posibles_palabras.append(pal)
-        
-        elif(pal[4] == 'a' or pal[4] == 'á'):
-            posibles_palabras.append(pal)
-    
-    #print(posibles_palabras)
+    print(len(posibles_palabras))
+    # Filtrar de las posibles las palabras con letras en la posición
+    for pal in posibles_palabras:
+        if(not pal[1] == 'o'):
+            posibles_palabras.remove(pal)
+        elif(not pal[1] == 'ó'):
+            posibles_palabras.remove(pal)
+    print(len(posibles_palabras))
+    print(posibles_palabras)
 
 
 extraer_palabras()
