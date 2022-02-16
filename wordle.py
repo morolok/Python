@@ -21,12 +21,14 @@ def wordle_script():
     def condiciones_palabras():
         # Filtrar las palabras que tengan las letras amarillas o verdes y nos las quedamos
         for pal in palabras:
-            if(((pal[4] == 'o') or (pal[4] == 'ó')) and ((pal[1] == 'e') or (pal[1] == 'é')) and (pal[0] == 's')):
+            if((pal[2] == 'r') and ((pal[1] == 'u') or (pal[1] == 'ú')) and ((pal[4] == 'o') or (pal[4] == 'ó'))):
                 posibles_palabras.append(pal)
         print(len(posibles_palabras))
 
-        # Eliminar las palabras que no tengan las letras en gris
-        for i in range(15):
+        # Eliminar las palabras que no tengan las letras en gris        
+        seguir1 = True
+        while(seguir1):
+            longitud_antes = len(posibles_palabras)
             for pal in posibles_palabras:
                 if('n' in pal):
                     posibles_palabras.remove(pal)
@@ -40,24 +42,32 @@ def wordle_script():
                     posibles_palabras.remove(pal)
                 elif('á' in pal):
                     posibles_palabras.remove(pal)
-                elif('q' in pal):
+                elif('t' in pal):
                     posibles_palabras.remove(pal)
-                elif('u' in pal):
+                elif('e' in pal):
                     posibles_palabras.remove(pal)
-                elif('ú' in pal):
+                elif('é' in pal):
                     posibles_palabras.remove(pal)
-                elif('d' in pal):
+                elif('m' in pal):
                     posibles_palabras.remove(pal)
-                elif('l' in pal):
+                elif('b' in pal):
                     posibles_palabras.remove(pal)
+            longitud_despues = len(posibles_palabras)
+            if(longitud_antes == longitud_despues):
+                seguir1 = False
         print(len(posibles_palabras))
-        
-        # Eliminar las palabras que tengan letras en posicion amarilla
-        for i in range(5):
-            pass
+
+        # Eliminar las palabras que tengan letras en posicion amarilla 
+        seguir2 = True
+        while(seguir2):
+            longitud_antes = len(posibles_palabras)
             for pal in posibles_palabras:
                 pass
+            longitud_despues = len(posibles_palabras)
+            if(longitud_antes == longitud_despues):
+                seguir2 = False
         print(len(posibles_palabras))
+        
         print(posibles_palabras)
     
     def termina_palabra():
