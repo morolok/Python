@@ -20,7 +20,8 @@ def wordle_script():
 
         # Filtrar las palabras que tengan las letras amarillas o verdes y nos las quedamos
         for pal in palabras:
-            if((('e' in pal) or ('é' in pal)) and ('l' in pal) and (('a' in pal) or ('á' in pal))):
+            if(((pal[1] == 'u') or (pal[1] == 'ú')) and ((pal[2] == 'e') or (pal[1] == 'é')) and 
+            ((pal[4] == 'o') or (pal[4] == 'ó'))):
                 posibles_palabras.append(pal)
         print(len(posibles_palabras))
 
@@ -33,17 +34,19 @@ def wordle_script():
                     posibles_palabras.remove(pal)
                 elif(('i' in pal) or ('í' in pal)):
                     posibles_palabras.remove(pal)
-                elif(('o' in pal) or ('ó' in pal)):
-                    posibles_palabras.remove(pal)
-                elif(('u' in pal) or ('ú' in pal)):
-                    posibles_palabras.remove(pal)
                 elif('n' in pal):
+                    posibles_palabras.remove(pal)
+                elif(('a' in pal) or ('á' in pal)):
+                    posibles_palabras.remove(pal)
+                elif('b' in pal):
+                    posibles_palabras.remove(pal)
+                elif('t' in pal):
                     posibles_palabras.remove(pal)
                 elif('s' in pal):
                     posibles_palabras.remove(pal)
-                elif('c' in pal):
+                elif('d' in pal):
                     posibles_palabras.remove(pal)
-                elif('v' in pal):
+                elif('l' in pal):
                     posibles_palabras.remove(pal)
             longitud_despues = len(posibles_palabras)
             if(longitud_antes == longitud_despues):
@@ -57,17 +60,9 @@ def wordle_script():
             for pal in posibles_palabras:
                 if((pal[1] == 'e') or (pal[1] == 'é')):
                     posibles_palabras.remove(pal)
-                elif((pal[2] == 'e') or (pal[2] == 'é')):
+                elif((pal[1] == 'o') or (pal[1] == 'ó')):
                     posibles_palabras.remove(pal)
-                elif((pal[4] == 'e') or (pal[4] == 'é')):
-                    posibles_palabras.remove(pal)
-                elif((pal[4] == 'a') or (pal[4] == 'á')):
-                    posibles_palabras.remove(pal)
-                elif((pal[2] == 'e') or (pal[2] == 'é')):
-                    posibles_palabras.remove(pal)
-                elif(pal[3] == 'l'):
-                    posibles_palabras.remove(pal)
-                elif(pal[1] == 'l'):
+                elif((pal[3] == 'e') or (pal[3] == 'é')):
                     posibles_palabras.remove(pal)
             longitud_despues = len(posibles_palabras)
             if(longitud_antes == longitud_despues):
