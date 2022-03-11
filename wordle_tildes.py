@@ -20,7 +20,7 @@ def wordle_script():
 
         # Filtrar las palabras que tengan las letras amarillas o verdes y nos las quedamos
         for pal in palabras:
-            if((pal[0] == 'c') and (pal[4] == 'e')):
+            if((pal[0] == 'e') and (pal[4] == 'i') and (pal[5] == 'ó') and (pal[6] == 'n')):
                 posibles_palabras.append(pal)
         print(len(posibles_palabras))
 
@@ -29,21 +29,19 @@ def wordle_script():
         while(seguir1):
             longitud_antes = len(posibles_palabras)
             for pal in posibles_palabras:
-                if('a' in pal):
-                    posibles_palabras.remove(pal)
-                elif('m' in pal):
-                    posibles_palabras.remove(pal)
-                elif('i' in pal):
-                    posibles_palabras.remove(pal)
-                elif('ó' in pal):
-                    posibles_palabras.remove(pal)
-                elif('n' in pal):
+                if('p' in pal):
                     posibles_palabras.remove(pal)
                 elif('r' in pal):
                     posibles_palabras.remove(pal)
-                elif('á' in pal):
+                elif('s' in pal):
                     posibles_palabras.remove(pal)
                 elif('t' in pal):
+                    posibles_palabras.remove(pal)
+                elif('m' in pal):
+                    posibles_palabras.remove(pal)
+                elif('b' in pal):
+                    posibles_palabras.remove(pal)
+                elif('r' in pal):
                     posibles_palabras.remove(pal)
             longitud_despues = len(posibles_palabras)
             if(longitud_antes == longitud_despues):
@@ -55,7 +53,10 @@ def wordle_script():
         while(seguir2):
             longitud_antes = len(posibles_palabras)
             for pal in posibles_palabras:
-                pass
+                if(pal[1] == 'e'):
+                    posibles_palabras.remove(pal)
+                elif(pal[2] == 'e'):
+                    posibles_palabras.remove(pal)
             longitud_despues = len(posibles_palabras)
             if(longitud_antes == longitud_despues):
                 seguir2 = False
@@ -78,7 +79,7 @@ def wordle_script():
                 res.append(pal)
         print(res)        
 
-    extraer_palabras(6)
+    extraer_palabras(7)
     condiciones_palabras()
     #termina_palabra('risa')
     #empieza_palabra('comi')
