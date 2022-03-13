@@ -20,7 +20,7 @@ def wordle_script():
 
         # Filtrar las palabras que tengan las letras amarillas o verdes y nos las quedamos
         for pal in palabras:
-            if((pal[0] == 'p') and ('r' in pal) and ('u' in pal)):
+            if(('c' in pal) and ('i' in pal) and ('l' in pal) and ('o' in pal)):
                 posibles_palabras.append(pal)
         print(len(posibles_palabras))
 
@@ -29,21 +29,25 @@ def wordle_script():
         while(seguir1):
             longitud_antes = len(posibles_palabras)
             for pal in posibles_palabras:
-                if('e' in pal):
+                if('r' in pal):
                     posibles_palabras.remove(pal)
                 elif('s' in pal):
                     posibles_palabras.remove(pal)
-                elif('i' in pal):
+                elif('t' in pal):
                     posibles_palabras.remove(pal)
-                elif('ó' in pal):
+                elif('a' in pal):
                     posibles_palabras.remove(pal)
-                elif('n' in pal):
+                elif('u' in pal):
                     posibles_palabras.remove(pal)
-                elif('l' in pal):
+                elif('f' in pal):
                     posibles_palabras.remove(pal)
-                elif('c' in pal):
+                elif('e' in pal):
                     posibles_palabras.remove(pal)
-                elif('o' in pal):
+                elif('r' in pal):
+                    posibles_palabras.remove(pal)
+                elif('g' in pal):
+                    posibles_palabras.remove(pal)
+                elif('d' in pal):
                     posibles_palabras.remove(pal)
             longitud_despues = len(posibles_palabras)
             if(longitud_antes == longitud_despues):
@@ -55,13 +59,21 @@ def wordle_script():
         while(seguir2):
             longitud_antes = len(posibles_palabras)
             for pal in posibles_palabras:
-                if(pal[1] == 'r'):
+                if(pal[0] == 'c'):
                     posibles_palabras.remove(pal)
-                elif(pal[2] == 'e'):
+                elif(pal[2] == 'i'):
                     posibles_palabras.remove(pal)
-                elif(pal[1] == 'u'):
+                elif(pal[6] == 'l'):
                     posibles_palabras.remove(pal)
-                elif(pal[4] == 'r'):
+                elif(pal[0] == 'l'):
+                    posibles_palabras.remove(pal)
+                elif(pal[2] == 'c'):
+                    posibles_palabras.remove(pal)
+                elif(pal[3] == 'i'):
+                    posibles_palabras.remove(pal)
+                elif(pal[1] == 'o'):
+                    posibles_palabras.remove(pal)
+                elif(pal[2] == 'l'):
                     posibles_palabras.remove(pal)
             longitud_despues = len(posibles_palabras)
             if(longitud_antes == longitud_despues):
