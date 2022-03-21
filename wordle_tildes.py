@@ -20,7 +20,7 @@ def wordle_script():
 
         # Filtrar las palabras que tengan las letras amarillas o verdes y nos las quedamos
         for pal in palabras:
-            if(('c' in pal) and ('i' in pal) and ('l' in pal) and ('o' in pal)):
+            if((pal[2] == 'r') and (pal[4] == 'e')):
                 posibles_palabras.append(pal)
         print(len(posibles_palabras))
 
@@ -29,23 +29,15 @@ def wordle_script():
         while(seguir1):
             longitud_antes = len(posibles_palabras)
             for pal in posibles_palabras:
-                if('r' in pal):
+                if('f' in pal):
                     posibles_palabras.remove(pal)
                 elif('s' in pal):
                     posibles_palabras.remove(pal)
-                elif('t' in pal):
+                elif('ó' in pal):
                     posibles_palabras.remove(pal)
-                elif('a' in pal):
+                elif('n' in pal):
                     posibles_palabras.remove(pal)
-                elif('u' in pal):
-                    posibles_palabras.remove(pal)
-                elif('f' in pal):
-                    posibles_palabras.remove(pal)
-                elif('e' in pal):
-                    posibles_palabras.remove(pal)
-                elif('r' in pal):
-                    posibles_palabras.remove(pal)
-                elif('g' in pal):
+                elif('p' in pal):
                     posibles_palabras.remove(pal)
                 elif('d' in pal):
                     posibles_palabras.remove(pal)
@@ -59,21 +51,13 @@ def wordle_script():
         while(seguir2):
             longitud_antes = len(posibles_palabras)
             for pal in posibles_palabras:
-                if(pal[0] == 'c'):
+                if(pal[1] == 'r'):
                     posibles_palabras.remove(pal)
-                elif(pal[2] == 'i'):
+                elif(pal[2] == 'e'):
                     posibles_palabras.remove(pal)
-                elif(pal[6] == 'l'):
+                elif(pal[1] == 'e'):
                     posibles_palabras.remove(pal)
-                elif(pal[0] == 'l'):
-                    posibles_palabras.remove(pal)
-                elif(pal[2] == 'c'):
-                    posibles_palabras.remove(pal)
-                elif(pal[3] == 'i'):
-                    posibles_palabras.remove(pal)
-                elif(pal[1] == 'o'):
-                    posibles_palabras.remove(pal)
-                elif(pal[2] == 'l'):
+                elif(pal[5] == 'r'):
                     posibles_palabras.remove(pal)
             longitud_despues = len(posibles_palabras)
             if(longitud_antes == longitud_despues):
@@ -97,7 +81,7 @@ def wordle_script():
                 res.append(pal)
         print(res)        
 
-    extraer_palabras(7)
+    extraer_palabras(6)
     condiciones_palabras()
     #termina_palabra('risa')
     #empieza_palabra('comi')
