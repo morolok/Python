@@ -75,66 +75,75 @@ def obtener_coordenadas_ciudad(ciudad, pais):
 
 
 def obtener_tiempo_actual_ciudad(latitud, longitud, ciudad, pais):
-    parametros = {'latitude': latitud, 'longitude': longitud, 'windspeed_unit': 'kmh', 'temperature_unit': 'celsius', 
-                  'current_weather': 'true'}
-    peticion = requests.get(url_base_tiempo, params=parametros)
-    respuesta_json = json.loads(peticion.text)
-    temperatura = str(respuesta_json['current_weather']['temperature']) + ' °C'
-    velocidad_viento = str(respuesta_json['current_weather']['windspeed']) + ' km/h'
-    codigo_tiempo = respuesta_json['current_weather']['weathercode']
-    print(f'Tiempo actual en %s, %s:' %(str(ciudad).upper(), str(pais).upper()))
-    print('\t' + 'Temperatura: ' + temperatura)
-    print('\t' + 'Velocidad del viento: ' + velocidad_viento)
-    if(codigo_tiempo in codigos_tiempo.keys()):
-        tiempo = codigos_tiempo.get(codigo_tiempo)
-        print('\t' + 'Tiempo: ' + tiempo)
+    if(latitud == None or longitud == None):
+        print('No se ha encontrado una ciudad con los términos de búsqieda introducidos')
+    else:
+        parametros = {'latitude': latitud, 'longitude': longitud, 'windspeed_unit': 'kmh', 'temperature_unit': 'celsius', 
+                    'current_weather': 'true'}
+        peticion = requests.get(url_base_tiempo, params=parametros)
+        respuesta_json = json.loads(peticion.text)
+        temperatura = str(respuesta_json['current_weather']['temperature']) + ' °C'
+        velocidad_viento = str(respuesta_json['current_weather']['windspeed']) + ' km/h'
+        codigo_tiempo = respuesta_json['current_weather']['weathercode']
+        print(f'Tiempo actual en %s, %s:' %(str(ciudad).upper(), str(pais).upper()))
+        print('\t' + 'Temperatura: ' + temperatura)
+        print('\t' + 'Velocidad del viento: ' + velocidad_viento)
+        if(codigo_tiempo in codigos_tiempo.keys()):
+            tiempo = codigos_tiempo.get(codigo_tiempo)
+            print('\t' + 'Tiempo: ' + tiempo)
 
 
 def obtener_tiempo_hoy_horas_ciudad(latitud, longitud, ciudad, pais):
-    parametros = {'latitude': latitud, 'longitude': longitud, 'windspeed_unit': 'kmh', 'temperature_unit': 'celsius', 
-                  'hourly': 'temperature_2m'}
-    peticion = requests.get(url_base_tiempo, params=parametros)
-    respuesta_json = json.loads(peticion.text)
-    hora_temperatura = {}
-    horas = respuesta_json['hourly']['time']
-    temperaturas = respuesta_json['hourly']['temperature_2m']
-    dia_hoy = int(datetime.today().day)
-    #print(respuesta_json)
-    for i in range(len(respuesta_json['hourly']['time'])):
-        fecha_hoy = int(horas[i].split('T')[0].split('-')[2])
-        if(dia_hoy == fecha_hoy):
-            #print(fecha_hoy)
-            hora_temperatura[horas[i].replace('T', ' ')] = str(temperaturas[i])
-    #print(hora_temperatura)
-    print(f'Tiempo por horas en %s, %s el día de hoy:' %(str(ciudad).upper(), str(pais).upper()))
-    for c, v in hora_temperatura.items():
-        print('\tTemperatura a las ' + c.split(' ')[1] + ' horas: ' + v + ' °C')
-    #print(len(respuesta_json['hourly']['time']))
-    #print(len(respuesta_json['hourly']['temperature_2m']))
+    if(latitud == None or longitud == None):
+        print('No se ha encontrado una ciudad con los términos de búsqieda introducidos')
+    else:
+        parametros = {'latitude': latitud, 'longitude': longitud, 'windspeed_unit': 'kmh', 'temperature_unit': 'celsius', 
+                    'hourly': 'temperature_2m'}
+        peticion = requests.get(url_base_tiempo, params=parametros)
+        respuesta_json = json.loads(peticion.text)
+        hora_temperatura = {}
+        horas = respuesta_json['hourly']['time']
+        temperaturas = respuesta_json['hourly']['temperature_2m']
+        dia_hoy = int(datetime.today().day)
+        #print(respuesta_json)
+        for i in range(len(respuesta_json['hourly']['time'])):
+            fecha_hoy = int(horas[i].split('T')[0].split('-')[2])
+            if(dia_hoy == fecha_hoy):
+                #print(fecha_hoy)
+                hora_temperatura[horas[i].replace('T', ' ')] = str(temperaturas[i])
+        #print(hora_temperatura)
+        print(f'Tiempo por horas en %s, %s el día de hoy:' %(str(ciudad).upper(), str(pais).upper()))
+        for c, v in hora_temperatura.items():
+            print('\tTemperatura a las ' + c.split(' ')[1] + ' horas: ' + v + ' °C')
+        #print(len(respuesta_json['hourly']['time']))
+        #print(len(respuesta_json['hourly']['temperature_2m']))
 
 
 def obtener_tiempo_mañana_horas_ciudad(latitud, longitud, ciudad, pais):
-    parametros = {'latitude': latitud, 'longitude': longitud, 'windspeed_unit': 'kmh', 'temperature_unit': 'celsius', 
-                  'hourly': 'temperature_2m'}
-    peticion = requests.get(url_base_tiempo, params=parametros)
-    respuesta_json = json.loads(peticion.text)
-    hora_temperatura = {}
-    horas = respuesta_json['hourly']['time']
-    temperaturas = respuesta_json['hourly']['temperature_2m']
-    dia_hoy = int(datetime.today().day)
-    dia_mañana = 0
-    for i in range(len(respuesta_json['hourly']['time'])):
-        fecha_hoy = int(horas[i].split('T')[0].split('-')[2])
-        if(not(dia_hoy == fecha_hoy)):
-            dia_mañana = int(horas[i].split('T')[0].split('-')[2])
-            break
-    for i in range(len(respuesta_json['hourly']['time'])):
-        fecha_mañana = int(horas[i].split('T')[0].split('-')[2])
-        if(dia_mañana == fecha_mañana):
-            hora_temperatura[horas[i].replace('T', ' ')] = str(temperaturas[i])
-    print(f'Tiempo por horas en %s, %s mañana día %s:' %(str(ciudad).upper(), str(pais).upper(), str(dia_mañana)))
-    for c, v in hora_temperatura.items():
-        print('\tTemperatura a las ' + c.split(' ')[1] + ' horas: ' + v + ' °C')
+    if(latitud == None or longitud == None):
+        print('No se ha encontrado una ciudad con los términos de búsqieda introducidos')
+    else:
+        parametros = {'latitude': latitud, 'longitude': longitud, 'windspeed_unit': 'kmh', 'temperature_unit': 'celsius', 
+                    'hourly': 'temperature_2m'}
+        peticion = requests.get(url_base_tiempo, params=parametros)
+        respuesta_json = json.loads(peticion.text)
+        hora_temperatura = {}
+        horas = respuesta_json['hourly']['time']
+        temperaturas = respuesta_json['hourly']['temperature_2m']
+        dia_hoy = int(datetime.today().day)
+        dia_mañana = 0
+        for i in range(len(respuesta_json['hourly']['time'])):
+            fecha_hoy = int(horas[i].split('T')[0].split('-')[2])
+            if(not(dia_hoy == fecha_hoy)):
+                dia_mañana = int(horas[i].split('T')[0].split('-')[2])
+                break
+        for i in range(len(respuesta_json['hourly']['time'])):
+            fecha_mañana = int(horas[i].split('T')[0].split('-')[2])
+            if(dia_mañana == fecha_mañana):
+                hora_temperatura[horas[i].replace('T', ' ')] = str(temperaturas[i])
+        print(f'Tiempo por horas en %s, %s mañana día %s:' %(str(ciudad).upper(), str(pais).upper(), str(dia_mañana)))
+        for c, v in hora_temperatura.items():
+            print('\tTemperatura a las ' + c.split(' ')[1] + ' horas: ' + v + ' °C')
 
 
 
