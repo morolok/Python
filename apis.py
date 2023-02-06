@@ -1,8 +1,12 @@
 import requests
 import json
 from datetime import datetime
+import tkinter as tkinter
+import tkinter.font as font
+#from tkinter import *
 
 
+ventana = tkinter.Tk()
 api_key_geolocalizacion = 'd16052a12e78a581c38d93a4c166a9bd'
 url_base_geolocalizacion = 'http://api.positionstack.com/v1/forward'
 url_base_tiempo = 'https://api.open-meteo.com/v1/forecast'
@@ -76,7 +80,7 @@ def obtener_coordenadas_ciudad(ciudad, pais):
 
 def obtener_tiempo_actual_ciudad(latitud, longitud, ciudad, pais):
     if(latitud == None or longitud == None):
-        print('No se ha encontrado una ciudad con los términos de búsqieda introducidos')
+        print('No se ha encontrado una ciudad con los términos de búsqueda introducidos')
     else:
         parametros = {'latitude': latitud, 'longitude': longitud, 'windspeed_unit': 'kmh', 'temperature_unit': 'celsius', 
                     'current_weather': 'true'}
@@ -95,7 +99,7 @@ def obtener_tiempo_actual_ciudad(latitud, longitud, ciudad, pais):
 
 def obtener_tiempo_hoy_horas_ciudad(latitud, longitud, ciudad, pais):
     if(latitud == None or longitud == None):
-        print('No se ha encontrado una ciudad con los términos de búsqieda introducidos')
+        print('No se ha encontrado una ciudad con los términos de búsqueda introducidos')
     else:
         parametros = {'latitude': latitud, 'longitude': longitud, 'windspeed_unit': 'kmh', 'temperature_unit': 'celsius', 
                     'hourly': 'temperature_2m'}
@@ -121,7 +125,7 @@ def obtener_tiempo_hoy_horas_ciudad(latitud, longitud, ciudad, pais):
 
 def obtener_tiempo_mañana_horas_ciudad(latitud, longitud, ciudad, pais):
     if(latitud == None or longitud == None):
-        print('No se ha encontrado una ciudad con los términos de búsqieda introducidos')
+        print('No se ha encontrado una ciudad con los términos de búsqueda introducidos')
     else:
         parametros = {'latitude': latitud, 'longitude': longitud, 'windspeed_unit': 'kmh', 'temperature_unit': 'celsius', 
                     'hourly': 'temperature_2m'}
@@ -149,7 +153,48 @@ def obtener_tiempo_mañana_horas_ciudad(latitud, longitud, ciudad, pais):
 
 
 #latitud, longitud, ciudad, pais= obtener_coordenadas_ciudad('tregrg', 'italiregegregra')
-latitud, longitud, ciudad, pais= obtener_coordenadas_ciudad('madrid', 'españa')
-obtener_tiempo_actual_ciudad(latitud, longitud, ciudad, pais)
-obtener_tiempo_hoy_horas_ciudad(latitud, longitud, ciudad, pais)
-obtener_tiempo_mañana_horas_ciudad(latitud, longitud, ciudad, pais)
+#latitud, longitud, ciudad, pais= obtener_coordenadas_ciudad('madrid', 'españa')
+#obtener_tiempo_actual_ciudad(latitud, longitud, ciudad, pais)
+#obtener_tiempo_hoy_horas_ciudad(latitud, longitud, ciudad, pais)
+#obtener_tiempo_mañana_horas_ciudad(latitud, longitud, ciudad, pais)
+
+ventana.title('El tiempo')
+ventana.geometry('550x150')
+
+etiqueta_ciudad = tkinter.Label(ventana, text='Ciudad: ', font=20)
+etiqueta_ciudad.place(x=10, y=10)
+etiqueta_ciudad.update()
+#etiqueta_ciudad.pack()
+
+campo_ciudad = tkinter.Text(ventana, height=1, width=16, font=20)
+campo_ciudad.place(x=etiqueta_ciudad.winfo_width()+10, y=(etiqueta_ciudad.winfo_height()/2)-5)
+campo_ciudad.update()
+#campo_ciudad.pack()
+
+etiqueta_pais = tkinter.Label(ventana, text='Pais: ', font=20)
+etiqueta_pais.place(x=10, y=etiqueta_ciudad.winfo_height()+20)
+etiqueta_pais.update()
+#etiqueta_pais.pack()
+
+campo_pais = tkinter.Text(ventana, height=1, width=16, font=20)
+campo_pais.place(x=etiqueta_pais.winfo_width()+10, y=(etiqueta_ciudad.winfo_height()+etiqueta_pais.winfo_height())-8)
+campo_pais.update()
+#campo_pais.pack()
+
+fuente_boton = font.Font(size=11, weight='bold')
+boton_tiempo_actual_ciudad = tkinter.Button(ventana, text='Tiempo actual')
+boton_tiempo_actual_ciudad.place(x=10, y=etiqueta_pais.winfo_width()+30)
+boton_tiempo_actual_ciudad['font'] = fuente_boton
+boton_tiempo_actual_ciudad.update()
+
+boton_tiempo_hoy_horas_ciudad = tkinter.Button(ventana, text='Tiempo por horas')
+boton_tiempo_hoy_horas_ciudad.place(x=boton_tiempo_actual_ciudad.winfo_width()+boton_tiempo_actual_ciudad.winfo_height(), y=etiqueta_pais.winfo_width()+30)
+boton_tiempo_hoy_horas_ciudad['font'] = fuente_boton
+boton_tiempo_hoy_horas_ciudad.update()
+
+boton_tiempo_mañana_horas_ciudad = tkinter.Button(ventana, text='Tiempo por horas mañana')
+xpos = boton_tiempo_actual_ciudad.winfo_width() + boton_tiempo_actual_ciudad.winfo_height() + boton_tiempo_hoy_horas_ciudad.winfo_width() + boton_tiempo_hoy_horas_ciudad.winfo_height() 
+boton_tiempo_mañana_horas_ciudad.place(x=xpos, y=etiqueta_pais.winfo_width()+30)
+boton_tiempo_mañana_horas_ciudad['font'] = fuente_boton
+boton_tiempo_mañana_horas_ciudad.update()
+ventana.mainloop()
