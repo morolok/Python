@@ -30,6 +30,7 @@ etiqueta_ciudad.update()
 
 campo_ciudad = tkinter.Text(ventana, height=1, width=16, font=20)
 campo_ciudad.place(x=etiqueta_ciudad.winfo_width()+10, y=(etiqueta_ciudad.winfo_height()/2)-5)
+campo_ciudad.focus()
 campo_ciudad.update()
 
 etiqueta_pais = tkinter.Label(ventana, text='Pais: ', font=20)
@@ -42,6 +43,16 @@ campo_pais.update()
 
 fuente_boton = font.Font(size=11, weight='bold')
 fuente_ventana_mensaje_tiempo = font.Font(size=20, weight='bold')
+
+
+
+
+def focus_next_widget(event):
+    event.widget.tk_focusNext().focus()
+    return("break")
+
+campo_ciudad.bind('<Tab>', focus_next_widget)
+campo_pais.bind('<Tab>', focus_next_widget)
 
 
 def obtener_coordenadas_ciudad(ciudad, pais):
@@ -170,6 +181,7 @@ def obtener_tiempo_hoy_horas_ciudad():
 
 def obtener_tiempo_mañana_horas_ciudad():
     latitud, longitud, ciudad, pais = obtener_coordenadas_ciudad(campo_ciudad.get('1.0', 'end'), campo_pais.get('1.0', 'end'))
+    res_tiempo = ''
     if(latitud == None or longitud == None):
         print('No se ha encontrado una ciudad con los términos de búsqueda introducidos')
     else:
@@ -192,8 +204,11 @@ def obtener_tiempo_mañana_horas_ciudad():
             if(dia_mañana == fecha_mañana):
                 hora_temperatura[horas[i].replace('T', ' ')] = str(temperaturas[i])
         print(f'Tiempo por horas en %s, %s mañana día %s:' %(str(ciudad).upper(), str(pais).upper(), str(dia_mañana)))
+        res_tiempo += f'Tiempo por horas en %s, %s mañana día %s:' %(str(ciudad).upper(), str(pais).upper(), str(dia_mañana)) + '\n'
         for c, v in hora_temperatura.items():
             print('\tTemperatura a las ' + c.split(' ')[1] + ' horas: ' + v + ' °C')
+            res_tiempo += '\tTemperatura a las ' + c.split(' ')[1] + ' horas: ' + v + ' °C' + '\n'
+        messagebox.showinfo('Tiempo mañana', res_tiempo)
 
 
 #latitud, longitud, ciudad, pais= obtener_coordenadas_ciudad('tregrg', 'italiregegregra')
