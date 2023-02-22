@@ -4,7 +4,6 @@ from datetime import datetime
 import tkinter as tkinter
 import tkinter.font as font
 import tkinter.messagebox as messagebox
-#from tkinter import *
 
 
 ventana = tkinter.Tk()
@@ -115,9 +114,11 @@ def obtener_coordenadas_ciudad(ciudad, pais):
                     else:
                         #print('¡NO HAY COINCIDENCIA!')
                         messagebox.showinfo('Error', 'No se ha encontrado una ciudad con los términos de búsqueda introducidos')
+                        break
                 else:
                     #print('¡NO HAY COINCIDENCIA!')
                     messagebox.showinfo('Error', 'No se ha encontrado una ciudad con los términos de búsqueda introducidos')
+                    break
     #print(latitud, longitud)
     return latitud, longitud, ciudad, pais
 
@@ -130,7 +131,8 @@ def obtener_tiempo_actual_ciudad():
         res_tiempo = ''
         if(latitud == None or longitud == None):
             #print('No se ha encontrado una ciudad con los términos de búsqueda introducidos')
-            messagebox.showinfo('Tiempo actual', 'No se ha encontrado una ciudad con los términos de búsqueda introducidos')
+            #messagebox.showinfo('Tiempo actual', 'No se ha encontrado una ciudad con los términos de búsqueda introducidos')
+            pass
         else:
             parametros = {'latitude': latitud, 'longitude': longitud, 'windspeed_unit': 'kmh', 'temperature_unit': 'celsius', 
                         'current_weather': 'true'}
@@ -154,13 +156,14 @@ def obtener_tiempo_actual_ciudad():
 
 def obtener_tiempo_hoy_horas_ciudad():
     if(len(campo_ciudad.get('1.0', 'end')) == 1 or len(campo_pais.get('1.0', 'end')) == 1):
-        messagebox.showinfo('Tiempo actual', 'La ciudad o el pais está vacío')
+        messagebox.showinfo('Tiempo por horas', 'La ciudad o el pais está vacío')
     else:
         latitud, longitud, ciudad, pais = obtener_coordenadas_ciudad(campo_ciudad.get('1.0', 'end'), campo_pais.get('1.0', 'end'))
         res_tiempo = ''
         if(latitud == None or longitud == None):
             #print('No se ha encontrado una ciudad con los términos de búsqueda introducidos')
-            messagebox.showinfo('Tiempo actual', 'No se ha encontrado una ciudad con los términos de búsqueda introducidos')
+            #messagebox.showinfo('Tiempo por horas', 'No se ha encontrado una ciudad con los términos de búsqueda introducidos')
+            pass
         else:
             parametros = {'latitude': latitud, 'longitude': longitud, 'windspeed_unit': 'kmh', 'temperature_unit': 'celsius', 
                         'hourly': 'temperature_2m'}
@@ -189,13 +192,14 @@ def obtener_tiempo_hoy_horas_ciudad():
 
 def obtener_tiempo_mañana_horas_ciudad():
     if(len(campo_ciudad.get('1.0', 'end')) == 1 or len(campo_pais.get('1.0', 'end')) == 1):
-        messagebox.showinfo('Tiempo actual', 'La ciudad o el pais está vacío')
+        messagebox.showinfo('Tiempo mañana', 'La ciudad o el pais está vacío')
     else:
         latitud, longitud, ciudad, pais = obtener_coordenadas_ciudad(campo_ciudad.get('1.0', 'end'), campo_pais.get('1.0', 'end'))
         res_tiempo = ''
         if(latitud == None or longitud == None):
             #print('No se ha encontrado una ciudad con los términos de búsqueda introducidos')
-            messagebox.showinfo('Tiempo actual', 'No se ha encontrado una ciudad con los términos de búsqueda introducidos')
+            #messagebox.showinfo('Tiempo mañana', 'No se ha encontrado una ciudad con los términos de búsqueda introducidos')
+            pass
         else:
             parametros = {'latitude': latitud, 'longitude': longitud, 'windspeed_unit': 'kmh', 'temperature_unit': 'celsius', 
                         'hourly': 'temperature_2m'}
