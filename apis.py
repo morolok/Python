@@ -64,7 +64,6 @@ def obtener_coordenadas_ciudad(ciudad, pais):
     numero_respuestas = len(respuesta_json['data'])
     latitud = None
     longitud = None
-    #print(respuesta_json['data'])
     if(numero_respuestas == 1):
         latitud = str(respuesta_json['data'][0]['latitude']).strip()
         longitud = str(respuesta_json['data'][0]['longitude']).strip()
@@ -75,10 +74,8 @@ def obtener_coordenadas_ciudad(ciudad, pais):
             if(ciudad.lower() == respuesta['name'].lower()):
                 posibles_respuestas.append(respuesta)
         if(len(posibles_respuestas) == 0):
-            #print('¡NO EXISTE NINGUNA COINCIDENCIA PARA LA BÚSQUEDA DE LA CIUDAD!')
             messagebox.showinfo('Error', 'No se ha encontrado una ciudad con los términos de búsqueda introducidos')
         elif(len(posibles_respuestas) == 1):
-            #print('Una posible respesta')
             pass
         else:
             for respuesta in posibles_respuestas:
@@ -96,7 +93,6 @@ def obtener_coordenadas_ciudad(ciudad, pais):
                         longitud = str(respuesta_json['data'][0]['longitude']).strip()
                         break
                     else:
-                        #print('¡NO HAY COINCIDENCIA!')
                         messagebox.showinfo('Error', 'No se ha encontrado una ciudad con los términos de búsqueda introducidos')
                 elif(respuesta['administrative_area'] == None):
                     if(ciudad.lower() == respuesta['locality'].lower()):
@@ -104,7 +100,6 @@ def obtener_coordenadas_ciudad(ciudad, pais):
                         longitud = str(respuesta_json['data'][0]['longitude']).strip()
                         break
                     else:
-                        #print('¡NO HAY COINCIDENCIA!')
                         messagebox.showinfo('Error', 'No se ha encontrado una ciudad con los términos de búsqueda introducidos')
                 elif(respuesta['locality'] == None):
                     if(ciudad.lower() == respuesta['administrative_area'].lower()):
@@ -112,14 +107,11 @@ def obtener_coordenadas_ciudad(ciudad, pais):
                         longitud = str(respuesta_json['data'][0]['longitude']).strip()
                         break
                     else:
-                        #print('¡NO HAY COINCIDENCIA!')
                         messagebox.showinfo('Error', 'No se ha encontrado una ciudad con los términos de búsqueda introducidos')
                         break
                 else:
-                    #print('¡NO HAY COINCIDENCIA!')
                     messagebox.showinfo('Error', 'No se ha encontrado una ciudad con los términos de búsqueda introducidos')
                     break
-    #print(latitud, longitud)
     return latitud, longitud, ciudad, pais
 
 
@@ -130,8 +122,6 @@ def obtener_tiempo_actual_ciudad():
         latitud, longitud, ciudad, pais = obtener_coordenadas_ciudad(campo_ciudad.get('1.0', 'end'), campo_pais.get('1.0', 'end'))
         res_tiempo = ''
         if(latitud == None or longitud == None):
-            #print('No se ha encontrado una ciudad con los términos de búsqueda introducidos')
-            #messagebox.showinfo('Tiempo actual', 'No se ha encontrado una ciudad con los términos de búsqueda introducidos')
             pass
         else:
             parametros = {'latitude': latitud, 'longitude': longitud, 'windspeed_unit': 'kmh', 'temperature_unit': 'celsius', 
@@ -141,15 +131,11 @@ def obtener_tiempo_actual_ciudad():
             temperatura = str(respuesta_json['current_weather']['temperature']).strip() + ' °C'
             velocidad_viento = str(respuesta_json['current_weather']['windspeed']).strip() + ' km/h'
             codigo_tiempo = respuesta_json['current_weather']['weathercode']
-            #print(f'Tiempo actual en %s, %s:' %(str(ciudad).upper(), str(pais).upper()))
-            #print('\t' + 'Temperatura: ' + temperatura)
-            #print('\t' + 'Velocidad del viento: ' + velocidad_viento)
             res_tiempo += f'Tiempo actual en %s, %s:' %(str(ciudad).upper(), str(pais).upper()) + '\n'
             res_tiempo += '\t' + 'Temperatura: ' + temperatura + '\n'
             res_tiempo += '\t' + 'Velocidad del viento: ' + velocidad_viento + '\n'
             if(codigo_tiempo in codigos_tiempo.keys()):
                 tiempo = codigos_tiempo.get(codigo_tiempo).strip()
-                #print('\t' + 'Tiempo: ' + tiempo)
                 res_tiempo += '\t' + 'Tiempo: ' + tiempo + '\n'
             messagebox.showinfo('Tiempo actual', res_tiempo)
 
@@ -161,8 +147,6 @@ def obtener_tiempo_hoy_horas_ciudad():
         latitud, longitud, ciudad, pais = obtener_coordenadas_ciudad(campo_ciudad.get('1.0', 'end'), campo_pais.get('1.0', 'end'))
         res_tiempo = ''
         if(latitud == None or longitud == None):
-            #print('No se ha encontrado una ciudad con los términos de búsqueda introducidos')
-            #messagebox.showinfo('Tiempo por horas', 'No se ha encontrado una ciudad con los términos de búsqueda introducidos')
             pass
         else:
             parametros = {'latitude': latitud, 'longitude': longitud, 'windspeed_unit': 'kmh', 'temperature_unit': 'celsius', 
@@ -173,21 +157,14 @@ def obtener_tiempo_hoy_horas_ciudad():
             horas = respuesta_json['hourly']['time']
             temperaturas = respuesta_json['hourly']['temperature_2m']
             dia_hoy = int(datetime.today().day)
-            #print(respuesta_json)
             for i in range(len(respuesta_json['hourly']['time'])):
                 fecha_hoy = int(horas[i].split('T')[0].split('-')[2])
                 if(dia_hoy == fecha_hoy):
-                    #print(fecha_hoy)
                     hora_temperatura[horas[i].replace('T', ' ')] = str(temperaturas[i])
-            #print(hora_temperatura)
-            #print(f'Tiempo por horas en %s, %s el día de hoy:' %(str(ciudad).upper(), str(pais).upper()))
             res_tiempo += f'Tiempo por horas en %s, %s el día de hoy:' %(str(ciudad).upper(), str(pais).upper()) + '\n'
             for c, v in hora_temperatura.items():
-                #print('\tTemperatura a las ' + c.split(' ')[1] + ' horas: ' + v + ' °C')
                 res_tiempo += '\tTemperatura a las ' + c.split(' ')[1] + ' horas: ' + v + ' °C' + '\n'
             messagebox.showinfo('Tiempo actual', res_tiempo)
-            #print(len(respuesta_json['hourly']['time']))
-            #print(len(respuesta_json['hourly']['temperature_2m']))
 
 
 def obtener_tiempo_mañana_horas_ciudad():
@@ -197,8 +174,6 @@ def obtener_tiempo_mañana_horas_ciudad():
         latitud, longitud, ciudad, pais = obtener_coordenadas_ciudad(campo_ciudad.get('1.0', 'end'), campo_pais.get('1.0', 'end'))
         res_tiempo = ''
         if(latitud == None or longitud == None):
-            #print('No se ha encontrado una ciudad con los términos de búsqueda introducidos')
-            #messagebox.showinfo('Tiempo mañana', 'No se ha encontrado una ciudad con los términos de búsqueda introducidos')
             pass
         else:
             parametros = {'latitude': latitud, 'longitude': longitud, 'windspeed_unit': 'kmh', 'temperature_unit': 'celsius', 
@@ -219,19 +194,10 @@ def obtener_tiempo_mañana_horas_ciudad():
                 fecha_mañana = int(horas[i].split('T')[0].split('-')[2])
                 if(dia_mañana == fecha_mañana):
                     hora_temperatura[horas[i].replace('T', ' ')] = str(temperaturas[i])
-            #print(f'Tiempo por horas en %s, %s mañana día %s:' %(str(ciudad).upper(), str(pais).upper(), str(dia_mañana)))
             res_tiempo += f'Tiempo por horas en %s, %s mañana día %s:' %(str(ciudad).upper(), str(pais).upper(), str(dia_mañana)) + '\n'
             for c, v in hora_temperatura.items():
-                #print('\tTemperatura a las ' + c.split(' ')[1] + ' horas: ' + v + ' °C')
                 res_tiempo += '\tTemperatura a las ' + c.split(' ')[1] + ' horas: ' + v + ' °C' + '\n'
             messagebox.showinfo('Tiempo mañana', res_tiempo)
-
-
-#latitud, longitud, ciudad, pais= obtener_coordenadas_ciudad('tregrg', 'italiregegregra')
-#latitud, longitud, ciudad, pais= obtener_coordenadas_ciudad('madrid', 'españa')
-#obtener_tiempo_actual_ciudad(latitud, longitud, ciudad, pais)
-#obtener_tiempo_hoy_horas_ciudad(latitud, longitud, ciudad, pais)
-#obtener_tiempo_mañana_horas_ciudad(latitud, longitud, ciudad, pais)
 
 
 boton_tiempo_actual_ciudad = tkinter.Button(ventana, text='Tiempo actual', command=obtener_tiempo_actual_ciudad)
