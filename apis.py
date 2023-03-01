@@ -22,6 +22,8 @@ codigos_tiempo = {0: 'Cielo claro', 1: 'Principalmente claro', 2: 'Parcialmente 
 
 ventana.title('El tiempo')
 ventana.geometry('550x150')
+#ventana.iconbitmap('nube1.ico')
+ventana.iconbitmap('nube2.ico')
 
 etiqueta_ciudad = tkinter.Label(ventana, text='Ciudad: ', font=20)
 etiqueta_ciudad.place(x=10, y=10)
